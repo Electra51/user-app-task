@@ -1,6 +1,7 @@
 import HeadHook from "../../components/common/HeadHook";
 import logo from "../../assets/logo/logo.png";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 type Inputs = {
   email: string;
@@ -20,10 +21,10 @@ const Login = () => {
         description="User application using typscript"
         keywords="Reactjs, Typescript, Tailwindcss"
         author="Safayet Nur"
-        title="Stack-Signup"
+        title="Stack-Login"
       />
       <div
-        className="w-[444px] h-[576px] border-[1px] border-[#EEEEEE] rounded-[16px] mx-auto my-[5%]"
+        className="w-[444px] h-[576px] border-[1px] border-[#EEEEEE] rounded-[16px] mx-auto my-[1%]"
         style={{ boxShadow: "0 20px 24px -4px rgba(16, 24, 40, 0.08)" }}
       >
         <div className="ps-[62px] pt-[52px]">
@@ -80,7 +81,9 @@ const Login = () => {
           </form>
           <p className="mt-[27px] mr-[67px] text-[#B0B7C3] pb-[64px]">
             Don’t have an account?
-            <span className="text-[#377DFF]">Sign Up</span>
+            <Link to="/register">
+              <span className="text-[#377DFF] cursor-pointer">Sign Up</span>
+            </Link>
           </p>
         </div>
       </div>

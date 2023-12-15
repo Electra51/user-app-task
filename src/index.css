@@ -10,3 +10,9 @@
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
+
+.active {
+  background: #7f56d9 !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+}
