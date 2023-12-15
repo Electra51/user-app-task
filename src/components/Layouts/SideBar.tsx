@@ -69,14 +69,14 @@ const SideBar = () => {
         </div>
       )}
 
-      <div className="mt-4 flex flex-col gap-1 relative">
+      <div className="mt-6 flex flex-col relative">
         {SidebarMenus?.map((menu, i) => (
           <NavLink
             to={menu?.link}
             key={i}
             className={` ${
-              menu?.margin && "mt-5"
-            } group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-[#7F56D9] rounded-md`}
+              menu?.margin && "mt-6"
+            } group flex items-center gap-3.5 p-2 hover:bg-[#7F56D9] rounded-md font-medium text-[16px]`}
           >
             <div className="ml-[-3px]">
               {React.createElement(menu?.icon, { size: "20" })}
@@ -108,7 +108,7 @@ const SideBar = () => {
         className={` group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-[#7F56D9] rounded-md`}
       >
         <div className="ml-[-3px]">
-          <IoMdLogOut />
+          <IoMdLogOut className="text-xl" />
         </div>
         <h2
           // style={{
