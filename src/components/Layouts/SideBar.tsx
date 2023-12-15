@@ -4,19 +4,35 @@ import {
   MdOutlineDashboard,
   MdOutlineMenu,
 } from "react-icons/md";
+import { TbSettings } from "react-icons/tb";
 import navLogo from "../../assets/logo/navlogo.png";
 import { LuUserCircle } from "react-icons/lu";
 import { IoMdLogOut } from "react-icons/io";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { logout } from "../../redux/authSlice";
+import toast from "react-hot-toast";
 const SideBar = () => {
   const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const handleLogOut = () => {
+    dispatch(logout());
+    toast.success("Logout Successfully");
+    navigate("/login");
+  };
   const SidebarMenus = [
     { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
     { name: "Profile", link: "/profile", icon: LuUserCircle },
-    { name: "Logout", link: "/logout", icon: IoMdLogOut, margin: true },
+    {
+      name: "Setting",
+      link: "/setting",
+      icon: TbSettings,
+      margin: true,
+    },
     {
       name: "Back Home",
-      link: "/",
+      link: "/home",
       icon: MdOutlineArrowBack,
     },
   ];
@@ -85,6 +101,33 @@ const SideBar = () => {
           </NavLink>
         ))}
       </div>
+
+      <NavLink
+        to="/login"
+        onClick={() => handleLogOut()}
+        className={` group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-[#7F56D9] rounded-md`}
+      >
+        <div className="ml-[-3px]">
+          <IoMdLogOut />
+        </div>
+        <h2
+          // style={{
+          //   transitionDelay: `${i + 3}00ms`,
+          // }}
+          className={`whitespace-pre duration-500 tracking-[0.5px] ${
+            !open && "opacity-0 translate-x-28 overflow-hidden"
+          }`}
+        >
+          LogOut
+        </h2>
+        <h2
+          className={`${
+            open && "hidden"
+          } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit `}
+        >
+          LogOut
+        </h2>
+      </NavLink>
     </div>
   );
 };

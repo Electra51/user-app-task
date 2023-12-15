@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import { setUser } from "./redux/authSlice";
 import Profile from "./Pages/ProfilePage/Profile";
 import Dashboard from "./Pages/DashboardPage/Dashboard";
+import Setting from "./Pages/SettingPage/Setting";
+import PrivateRoute from "./Routes/PrivateRoutes";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -23,9 +25,38 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/users" element={<Users />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route
+        path="/users"
+        element={
+          <PrivateRoute>
+            <Users />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/setting"
+        element={
+          <PrivateRoute>
+            <Setting />
+          </PrivateRoute>
+        }
+      />
       <Route path="/projects" element={<Projects />} />
       <Route path="/tasks" element={<Tasks />} />
       <Route path="/report" element={<Reporting />} />
