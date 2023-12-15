@@ -15,4 +15,14 @@
   background: #7f56d9 !important;
   border-radius: 6px !important;
   padding: 8px 12px !important;
+  color: white !important;
+}
+
+.menu {
+  flex-wrap: nowrap !important;
+}
+.menu :where(li:not(.menu-title) > *:not(ul):not(details):not(.menu-title)),
+.menu :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }

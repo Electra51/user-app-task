@@ -1,7 +1,12 @@
 import HeadHook from "../../components/common/HeadHook";
 import logo from "../../assets/logo/logo.png";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../../redux/authApi";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../redux/hooks";
+import { setUser } from "../../redux/authSlice";
 
 type Inputs = {
   email: string;
@@ -14,7 +19,29 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const [loginUser, { data, isError, error, isSuccess, isLoading }] =
+    useLoginUserMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    if (email && password) {
+      try {
+        await loginUser({ email, password });
+      } catch (error) {
+        console.error("Login failed", error);
+        toast.error("Login failed. Please try again.");
+      }
+    } else {
+      toast.error("Please fill in all input fields");
+    }
+  };
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("user login successfully");
+      dispatch(setUser({ token: data.token, name: data.email }));
+      navigate("/");
+    }
+  });
   return (
     <div>
       <HeadHook

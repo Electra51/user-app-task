@@ -7,12 +7,25 @@ import Users from "./Pages/UsersPage/Users";
 import Projects from "./Pages/ProjectsPage/Projects";
 import Tasks from "./Pages/TasksPage/Tasks";
 import Reporting from "./Pages/ReportingPage/Reporting";
+import { useAppDispatch } from "./redux/hooks";
+import { useEffect } from "react";
+import { setUser } from "./redux/authSlice";
+import Profile from "./Pages/ProfilePage/Profile";
+import Dashboard from "./Pages/DashboardPage/Dashboard";
 
 const App = () => {
+  const dispatch = useAppDispatch();
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  console.log("user", user);
+  useEffect(() => {
+    dispatch(setUser(user));
+  }, []);
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/users" element={<Users />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/tasks" element={<Tasks />} />
       <Route path="/report" element={<Reporting />} />
