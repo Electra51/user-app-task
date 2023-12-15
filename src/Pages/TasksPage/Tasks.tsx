@@ -8,9 +8,16 @@ const Tasks = () => {
         description="User application using typscript"
         keywords="Reactjs, Typescript, Tailwindcss"
         author="Safayet Nur"
-        title="Stack-Task"
+        title="Stack-Tasks"
       />
-      <div>Task</div>
+      <div className="flex flex-col justify-center items-center mt-48 text-gray-400 ">
+        <p className="font-bold text-3xl tracking-[0.8px]">
+          Welcome to Tasks Page
+        </p>
+        <p className="tracking-[1px] text-xl leading-9">
+          This is Tasks page of stack
+        </p>
+      </div>
     </Layout>
   );
 };
