@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Pages/LoginPage/Login";
 import Register from "./Pages/RegisterPage/Register";
@@ -8,7 +9,6 @@ import Projects from "./Pages/ProjectsPage/Projects";
 import Tasks from "./Pages/TasksPage/Tasks";
 import Reporting from "./Pages/ReportingPage/Reporting";
 import { useAppDispatch } from "./redux/hooks";
-import { useEffect } from "react";
 import { setUser } from "./redux/authSlice";
 import Profile from "./Pages/ProfilePage/Profile";
 import Dashboard from "./Pages/DashboardPage/Dashboard";
@@ -22,6 +22,7 @@ const App = () => {
   useEffect(() => {
     dispatch(setUser(user));
   }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />

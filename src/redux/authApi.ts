@@ -4,6 +4,7 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://reqres.in/api" }),
   endpoints: (builder) => ({
+    //login api
     loginUser: builder.mutation({
       query: (body: { email: string; password: string }) => {
         return {
@@ -13,6 +14,8 @@ export const authApi = createApi({
         };
       },
     }),
+
+    //register api
     registerUser: builder.mutation({
       query: (body: { email: string; password: string }) => {
         return {
@@ -22,6 +25,8 @@ export const authApi = createApi({
         };
       },
     }),
+
+    //user api
     getUser: builder.query({
       query: () => {
         return {
@@ -32,6 +37,7 @@ export const authApi = createApi({
     }),
   }),
 });
+
 export const {
   useLoginUserMutation,
   useRegisterUserMutation,

@@ -1,17 +1,19 @@
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
 import HeadHook from "../../components/common/HeadHook";
 import logo from "../../assets/logo/logo.png";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { useRegisterUserMutation } from "../../redux/authApi";
-import toast from "react-hot-toast";
-import { useEffect } from "react";
-import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/authSlice";
+import { useAppDispatch } from "../../redux/hooks";
+import { useRegisterUserMutation } from "../../redux/authApi";
+import PasswordStrength from "../../components/common/PasswordStrength";
 
 type Inputs = {
   email: string;
   password: string;
 };
+
 const Register = () => {
   const {
     register,
@@ -19,11 +21,13 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
+
+  const passwordValue = watch("password");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [registerUser, { data, isError, error, isSuccess, isLoading }] =
-    useRegisterUserMutation();
-  console.log("registerUser", data);
+  const [registerUser, { data, isSuccess }] = useRegisterUserMutation();
+
+  //register submit function
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (email && password) {
       try {
@@ -36,6 +40,7 @@ const Register = () => {
       toast.error("Please fill in all input fields");
     }
   };
+
   useEffect(() => {
     if (isSuccess) {
       toast.success("user login successfully");
@@ -43,6 +48,7 @@ const Register = () => {
       navigate("/");
     }
   });
+
   return (
     <div>
       <HeadHook
@@ -68,13 +74,25 @@ const Register = () => {
               <label className="text-[#344054] font-medium text-[14px] pb-[6px]">
                 Email
               </label>
-              <input
-                type="text"
-                placeholder="Enter Email"
-                className="input input-bordered !rounded-[8px] w-full max-w-xs"
-                defaultValue="test"
-                {...register("email")}
-              />
+              {errors.email ? (
+                <input
+                  type="text"
+                  placeholder="Enter Email"
+                  className="input input-bordered input-error !rounded-[8px] w-full max-w-[320px]"
+                  {...register("email", {
+                    required: "This field is required",
+                  })}
+                />
+              ) : (
+                <input
+                  type="text"
+                  placeholder="Enter Email"
+                  className="input input-bordered !rounded-[8px] w-full max-w-[320px]"
+                  {...register("email", {
+                    required: "This field is required",
+                  })}
+                />
+              )}
               {errors.email && (
                 <span className="pt-[6px] text-[#F04438] text-[14px] font-normal">
                   This field is required
@@ -85,23 +103,44 @@ const Register = () => {
               <label className="text-[#344054] font-medium text-[14px] pb-[6px]">
                 Password
               </label>
-              <input
-                type="password"
-                placeholder="******"
-                className="input input-bordered !rounded-[8px] w-full max-w-xs"
-                {...register("password", { required: true })}
-              />
+              {errors.password ? (
+                <input
+                  type="password"
+                  placeholder="******"
+                  className="input input-bordered input-error !rounded-[8px] !w-[320px] mt-0.5"
+                  {...register("password", {
+                    required: "This field is required",
+                  })}
+                />
+              ) : (
+                <input
+                  type="password"
+                  placeholder="******"
+                  className="input input-bordered !rounded-[8px] !w-[320px] mt-0.5"
+                  {...register("password", {
+                    required: "This field is required",
+                  })}
+                />
+              )}
+
               {errors.password && (
-                <p className="pt-[19px] pb[17px]">This field is required</p>
+                <p className="pt-[6px] text-[#F04438] text-[14px] font-normal pb-[17px]">
+                  This field is required
+                </p>
+              )}
+              {passwordValue ? (
+                <PasswordStrength valueOfPassword={passwordValue} />
+              ) : (
+                ""
               )}
             </div>
 
             <button
               type="submit"
               className={
-                errors.password
-                  ? "mt-0 text-[16px] font-semibold bg-[#6941C6] rounded-[8px] text-white py-[10px] px-[129px]"
-                  : "mt-[40px] text-[16px] font-semibold bg-[#6941C6] rounded-[8px] text-white py-[10px] px-[129px]"
+                errors.password || passwordValue
+                  ? "mt-0 text-[16px] font-semibold bg-[#6941C6] rounded-[8px] text-white py-[10px] px-[129px] !w-[320px]"
+                  : "mt-[40px] text-[16px] font-semibold bg-[#6941C6] rounded-[8px] text-white py-[10px] px-[129px] !w-[320px]"
               }
             >
               Sign Up

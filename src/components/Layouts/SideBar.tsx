@@ -1,26 +1,32 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import {
   MdOutlineArrowBack,
   MdOutlineDashboard,
   MdOutlineMenu,
 } from "react-icons/md";
 import { TbSettings } from "react-icons/tb";
-import navLogo from "../../assets/logo/navlogo.png";
 import { LuUserCircle } from "react-icons/lu";
 import { IoMdLogOut } from "react-icons/io";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import navLogo from "../../assets/logo/navlogo.png";
 import { useAppDispatch } from "../../redux/hooks";
 import { logout } from "../../redux/authSlice";
-import toast from "react-hot-toast";
+
 const SideBar = () => {
   const [open, setOpen] = useState(true);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  //handle logout
   const handleLogOut = () => {
     dispatch(logout());
     toast.success("Logout Successfully");
     navigate("/login");
   };
+
+  //sidebar menu
   const SidebarMenus = [
     { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
     { name: "Profile", link: "/profile", icon: LuUserCircle },
@@ -45,12 +51,15 @@ const SideBar = () => {
     >
       {open ? (
         <div className="flex justify-between items-center">
+          {/* project logo start */}
           <Link to="/">
             <div className="flex justify-start items-center !gap-[11px] cursor-pointer">
               <img src={navLogo} alt="navlogo" height={30} width={30} />
               <h2 className="font-bold text-[18px]">Stack</h2>
             </div>
           </Link>
+          {/* project logo end */}
+
           <div className="py-3">
             <MdOutlineMenu
               size={26}
@@ -101,7 +110,6 @@ const SideBar = () => {
           </NavLink>
         ))}
       </div>
-
       <NavLink
         to="/login"
         onClick={() => handleLogOut()}
@@ -111,9 +119,6 @@ const SideBar = () => {
           <IoMdLogOut className="text-xl" />
         </div>
         <h2
-          // style={{
-          //   transitionDelay: `${i + 3}00ms`,
-          // }}
           className={`whitespace-pre duration-500 tracking-[0.5px] ${
             !open && "opacity-0 translate-x-28 overflow-hidden"
           }`}

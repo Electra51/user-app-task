@@ -1,4 +1,5 @@
 import { IoMdArrowBack } from "react-icons/io";
+
 const NotFoundPage = () => {
   return (
     <div className="flex flex-col justify-center items-center mt-28 text-[#344054]">

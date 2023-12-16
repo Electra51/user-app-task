@@ -1,6 +1,7 @@
+import navLogo from "../../assets/logo/navlogo.png";
 import Layout from "../../components/Layouts/Layout";
 import HeadHook from "../../components/common/HeadHook";
-import navLogo from "../../assets/logo/navlogo.png";
+
 const Home = () => {
   return (
     <Layout>
@@ -19,7 +20,6 @@ const Home = () => {
             <h2 className="font-bold text-3xl">Stack</h2>
           </div>
         </div>
-
         <p className="tracking-[1px] text-xl leading-9">
           This is Tasks page of stack
         </p>

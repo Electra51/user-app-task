@@ -1,11 +1,10 @@
-import Layout from "../../components/Layouts/Layout";
-import HeadHook from "../../components/common/HeadHook";
-import { FiUploadCloud, FiPlus } from "react-icons/fi";
+import { useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { useEffect, useRef } from "react";
+import { FiUploadCloud, FiPlus } from "react-icons/fi";
+import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import authApi, { useGetUserQuery } from "../../redux/authApi";
-import { MdDeleteOutline } from "react-icons/md";
-import { MdOutlineEdit } from "react-icons/md";
+import HeadHook from "../../components/common/HeadHook";
+import Layout from "../../components/Layouts/Layout";
 
 type Row = {
   id: number;
@@ -14,9 +13,9 @@ type Row = {
   email: string;
   avatar: string;
 };
+
 const Users = () => {
-  const { data, isLoading, isFetching, isError } = useGetUserQuery(authApi);
-  console.log("data", data?.data);
+  //pasition styling functionality using pure javascript
   useEffect(() => {
     const element = document.querySelector(".hLjof") as HTMLElement | null;
     if (element) {
@@ -46,7 +45,6 @@ const Users = () => {
       paginationFirstPage.textContent = "";
     }
 
-    // Remove content from elements with specific class names
     const elementsWithClass1 =
       document.getElementsByClassName("sc-lmoLKH lcunyj");
     for (let i = 0; i < elementsWithClass1.length; i++) {
@@ -64,6 +62,10 @@ const Users = () => {
       }
     }
   }, []);
+
+  const { data } = useGetUserQuery(authApi);
+
+  //table column
   const columns = [
     {
       name: "Serial no.",
@@ -124,7 +126,7 @@ const Users = () => {
       ),
     },
   ];
-
+  // table header pixel perfect style
   const tableHeaderstyle = {
     headCells: {
       style: {
@@ -157,6 +159,8 @@ const Users = () => {
           </button>
         </div>
       </div>
+
+      {/* users table */}
       <div className="mt-[33px] w-[1216px] rounded-[8px] mx-auto border border-[#EAECF0] mb-[210px]">
         <DataTable
           columns={columns}

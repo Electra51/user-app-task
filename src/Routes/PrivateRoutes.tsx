@@ -1,4 +1,3 @@
-import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks";
 import { selectAuth } from "../redux/authSlice";
@@ -12,7 +11,7 @@ const PrivateRoute = ({
   console.log(token);
   const location = useLocation();
 
-  if (token) {
+  if (token && localStorage.getItem("user")) {
     return <>{children}</>;
   }
 

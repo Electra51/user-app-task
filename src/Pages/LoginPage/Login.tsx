@@ -1,10 +1,10 @@
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import HeadHook from "../../components/common/HeadHook";
 import logo from "../../assets/logo/logo.png";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../redux/authApi";
-import toast from "react-hot-toast";
-import { useEffect } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/authSlice";
 
@@ -12,6 +12,7 @@ type Inputs = {
   email: string;
   password: string;
 };
+
 const Login = () => {
   const {
     register,
@@ -19,10 +20,12 @@ const Login = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const [loginUser, { data, isError, error, isSuccess, isLoading }] =
-    useLoginUserMutation();
+
+  const [loginUser, { data, isSuccess }] = useLoginUserMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  //login submit function
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     if (email && password) {
       try {
@@ -35,13 +38,15 @@ const Login = () => {
       toast.error("Please fill in all input fields");
     }
   };
+
   useEffect(() => {
     if (isSuccess) {
       toast.success("user login successfully");
-      dispatch(setUser({ token: data.token, name: data.email }));
+      dispatch(setUser({ token: data.token, name: data.name }));
       navigate("/");
     }
   });
+
   return (
     <div>
       <HeadHook
@@ -67,13 +72,26 @@ const Login = () => {
               <label className="text-[#344054] font-medium text-[14px] pb-[6px]">
                 Email
               </label>
-              <input
-                type="text"
-                placeholder="Enter Email"
-                className="input input-bordered !rounded-[8px] w-full max-w-xs"
-                defaultValue="test"
-                {...register("email")}
-              />
+              {errors.email ? (
+                <input
+                  type="text"
+                  placeholder="Enter Email"
+                  className="input input-bordered input-error !rounded-[8px] w-full max-w-xs"
+                  {...register("email", {
+                    required: "This field is required",
+                  })}
+                />
+              ) : (
+                <input
+                  type="text"
+                  placeholder="Enter Email"
+                  className="input input-bordered !rounded-[8px] w-full max-w-xs"
+                  {...register("email", {
+                    required: "This field is required",
+                  })}
+                />
+              )}
+
               {errors.email && (
                 <span className="pt-[6px] text-[#F04438] text-[14px] font-normal">
                   This field is required
