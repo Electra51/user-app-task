@@ -1,10 +1,13 @@
+import { Outlet } from "react-router-dom";
 import SideBar from "./SideBar";
 
-const DashboardLayouts = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayouts = () => {
   return (
     <div className="flex">
       <SideBar />
-      <main className="w-full">{children}</main>
+      <div className="w-full">
+        <Outlet />
+      </div>
     </div>
   );
 };

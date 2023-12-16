@@ -4,7 +4,7 @@ import HeadHook from "../../components/common/HeadHook";
 
 const Dashboard = () => {
   return (
-    <DashboardLayouts>
+    <>
       <HeadHook
         description="User application using typscript"
         keywords="Reactjs, Typescript, Tailwindcss"
@@ -17,7 +17,7 @@ const Dashboard = () => {
           Comming soon ...
         </div>
       </div>
-    </DashboardLayouts>
+    </>
   );
 };
 

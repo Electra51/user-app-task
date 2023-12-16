@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Layout from "../../components/Layouts/Layout";
 import HeadHook from "../../components/common/HeadHook";
 
 const Tasks = () => {
@@ -26,7 +25,7 @@ const Tasks = () => {
   }, []);
 
   return (
-    <Layout>
+    <>
       <HeadHook
         description="User application using typscript"
         keywords="Reactjs, Typescript, Tailwindcss"
@@ -63,7 +62,7 @@ const Tasks = () => {
           </div>
         ))}
       </div>
-    </Layout>
+    </>
   );
 };
 

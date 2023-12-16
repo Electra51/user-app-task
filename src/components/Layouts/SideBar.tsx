@@ -28,11 +28,15 @@ const SideBar = () => {
 
   //sidebar menu
   const SidebarMenus = [
-    { name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-    { name: "Profile", link: "/profile", icon: LuUserCircle },
+    {
+      name: "Dashboard",
+      link: "/dashboard/dashboard",
+      icon: MdOutlineDashboard,
+    },
+    { name: "Profile", link: "/dashboard/profile", icon: LuUserCircle },
     {
       name: "Setting",
-      link: "/setting",
+      link: "/dashboard/setting",
       icon: TbSettings,
       margin: true,
     },
@@ -78,7 +82,7 @@ const SideBar = () => {
         </div>
       )}
 
-      <div className="mt-6 flex flex-col relative">
+      <div className="mt-6 flex flex-col gap-1 relative">
         {SidebarMenus?.map((menu, i) => (
           <NavLink
             to={menu?.link}

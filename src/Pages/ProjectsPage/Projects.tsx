@@ -1,9 +1,8 @@
-import Layout from "../../components/Layouts/Layout";
 import HeadHook from "../../components/common/HeadHook";
 
 const Projects = () => {
   return (
-    <Layout>
+    <>
       <HeadHook
         description="User application using typscript"
         keywords="Reactjs, Typescript, Tailwindcss"
@@ -18,7 +17,7 @@ const Projects = () => {
           This is projects page of stack
         </p>
       </div>
-    </Layout>
+    </>
   );
 };
 

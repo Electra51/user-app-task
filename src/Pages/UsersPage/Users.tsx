@@ -4,7 +4,6 @@ import { FiUploadCloud, FiPlus } from "react-icons/fi";
 import { MdDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import authApi, { useGetUserQuery } from "../../redux/authApi";
 import HeadHook from "../../components/common/HeadHook";
-import Layout from "../../components/Layouts/Layout";
 
 type Row = {
   id: number;
@@ -139,7 +138,7 @@ const Users = () => {
   };
 
   return (
-    <Layout>
+    <>
       <HeadHook
         description="User application using typscript"
         keywords="Reactjs, Typescript, Tailwindcss"
@@ -171,7 +170,7 @@ const Users = () => {
           customStyles={tableHeaderstyle}
         />
       </div>
-    </Layout>
+    </>
   );
 };
 

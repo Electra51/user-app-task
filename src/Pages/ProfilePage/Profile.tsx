@@ -4,7 +4,7 @@ import DashboardLayouts from "../../components/Layouts/DashboardLayouts";
 
 const Profile = () => {
   return (
-    <DashboardLayouts>
+    <>
       <HeadHook
         description="User application using typscript"
         keywords="Reactjs, Typescript, Tailwindcss"
@@ -17,7 +17,7 @@ const Profile = () => {
           Profile Comming soon ...
         </div>
       </div>
-    </DashboardLayouts>
+    </>
   );
 };
 

@@ -44,7 +44,7 @@ const Navbar = () => {
       </li>
       {token ? (
         <li className="tracking-[0.5px] !rounded-[6px] font-medium text-[16px]">
-          <NavLink to="/dashboard">DashBoard</NavLink>
+          <NavLink to="/dashboard/dashboard">DashBoard</NavLink>
         </li>
       ) : (
         ""
@@ -104,7 +104,7 @@ const Navbar = () => {
                   className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#6941C6] rounded-[8px] w-52"
                 >
                   <li className="tracking-[0.5px] !rounded-[6px] font-medium text-[16px]">
-                    <NavLink to="/profile" className="justify-start">
+                    <NavLink to="/dashboard/profile" className="justify-start">
                       <LuUserCircle className="text-xl" />
                       Profile
                     </NavLink>
