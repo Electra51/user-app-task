@@ -102,14 +102,29 @@ const Login = () => {
               <label className="text-[#344054] font-medium text-[14px] pb-[6px]">
                 Password
               </label>
-              <input
-                type="password"
-                placeholder="******"
-                className="input input-bordered !rounded-[8px] w-full max-w-xs"
-                {...register("password", { required: true })}
-              />
+              {errors.password ? (
+                <input
+                  type="password"
+                  placeholder="******"
+                  className="input input-bordered input-error !rounded-[8px] !w-[320px] mt-0.5"
+                  {...register("password", {
+                    required: "This field is required",
+                  })}
+                />
+              ) : (
+                <input
+                  type="password"
+                  placeholder="******"
+                  className="input input-bordered !rounded-[8px] !w-[320px] mt-0.5"
+                  {...register("password", {
+                    required: "This field is required",
+                  })}
+                />
+              )}
               {errors.password && (
-                <p className="pt-[19px] pb[17px]">This field is required</p>
+                <p className="pt-[6px] text-[#F04438] text-[14px] font-normal pb-[17px]">
+                  This field is required
+                </p>
               )}
             </div>
 
@@ -117,8 +132,8 @@ const Login = () => {
               type="submit"
               className={
                 errors.password
-                  ? "mt-0 text-[16px] font-semibold bg-[#6941C6] rounded-[8px] text-white py-[10px] px-[129px]"
-                  : "mt-[40px] text-[16px] font-semibold bg-[#6941C6] rounded-[8px] text-white py-[10px] px-[129px]"
+                  ? "mt-0 text-[16px] font-semibold bg-[#6941C6] rounded-[8px] text-white py-[10px] px-[129px] !w-[320px]"
+                  : "mt-[40px] text-[16px] font-semibold bg-[#6941C6] rounded-[8px] text-white py-[10px] px-[129px] !w-[320px]"
               }
             >
               Sign In
