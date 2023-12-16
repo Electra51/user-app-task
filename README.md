@@ -27,7 +27,7 @@
 
 
 ## Screenshots
-![App Screenshot]([https://i.ibb.co/NY63D7F/Capture.png](https://i.ibb.co/xYS5FN0/Group-23.png))
+!([https://i.ibb.co/NY63D7F/Capture.png](https://i.ibb.co/xYS5FN0/Group-23.png))
 ![App Screenshot]([https://i.ibb.co/Cs1rHKD/4.png](https://i.ibb.co/8513c4y/4.png))
 ![App Screenshot]([https://i.ibb.co/3my3zTC/2.png](https://i.ibb.co/hDcmhd4/5.png))
 ![App Screenshot]([https://i.ibb.co/hg2PLZN/3.png](https://i.ibb.co/cT9cFq4/6.png))
